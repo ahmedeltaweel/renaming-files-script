@@ -1,0 +1,18 @@
+#! /usr/bin/env php
+
+<?php
+/**
+ * Created by PhpStorm.
+ * User: ahmedeltaweel
+ * Date: 12/8/15
+ * Time: 6:11 PM
+ */
+
+use Acme\renameFiles;
+use Symfony\Component\Console\Application;
+
+require 'vendor/autoload.php';
+
+$app = new Application('sort','1.0');
+$app->add(new renameFiles);
+$app->run();
