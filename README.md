@@ -4,5 +4,6 @@
 # how to use ?
 ### 1- download the repo 
 ### 2- go to the repo directory 
-### 3- excute => ./run sort <path of files directory> [<prefix>]
+### 3- excute => ./run sort  path-of-files-directory prefix
 ### 4- the path is required while the prefix is optional 
+### example: ./run sort /home/username/Pictures/test/ img
