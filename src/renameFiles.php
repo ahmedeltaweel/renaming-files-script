@@ -30,32 +30,34 @@ class renameFiles extends Command
 		$prefix = $input->getArgument('prefix');
 
 		$output->writeln("<info> renaming files from this path: $path </info>");
-		$output->writeln("<info> to this path: $path"."renamed-files </info>");
+		$output->writeln("<info> to this path: $path" . "renamed-files </info>");
 		$output->writeln("<info> using this prefix: $prefix </info>");
 		$output->writeln('--------------------------------------------------------------');
 
 		$i = 0;
 		foreach (scandir($path) as $file) {
 			//for linux to skip the parent dir
-			if ($i > 1) {
-				$output->writeln("<comment>renaming: $file </comment>");
-				$output->writeln('--------------------------------------------------------------');
+			if ($file == '.' || $file == '..' || is_dir($file)) {
+				continue;
+			}
+			$output->writeln("<comment>renaming: $file </comment>");
+			$output->writeln('--------------------------------------------------------------');
 
-				//creating a folder if not exist
-				if (!file_exists($path . "/" . 'renamed-files')) {
-					if (!mkdir($path . "/" . 'renamed-files', 0777)) {
-						die('failed to make dir');
-					}
-				}
-
-				$path_parts = pathinfo($path . "/" . $file);
-				//skip folders , copy and rename all files with the same extension
-				if (isset($path_parts['extension'])) {
-					if (!copy($path . "/" . $file, $path . '/renamed-files/' . $prefix . $i . "." . $path_parts['extension'])) {
-						die('failed to copy');
-					}
+			//creating a folder if not exist
+			if (!file_exists($path . "/" . 'renamed-files')) {
+				if (!mkdir($path . "/" . 'renamed-files', 0777)) {
+					die('failed to make dir');
 				}
 			}
+
+			$path_parts = pathinfo($path . "/" . $file);
+			//skip folders , copy and rename all files with the same extension
+			if (isset($path_parts['extension'])) {
+				if (!copy($path . "/" . $file, $path . '/renamed-files/' . $prefix . $i . "." . $path_parts['extension'])) {
+					die('failed to copy');
+				}
+			}
+
 			$i++;
 		}
 	}
