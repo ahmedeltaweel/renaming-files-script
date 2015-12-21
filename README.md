@@ -9,7 +9,7 @@ this script is for copying and renaming all files in a directory with a new name
 
 Renaming Files Script uses an open source projects to work properly:
 
-* [The Console Component] The Console component eases the creation of beautiful and testable command line interfaces.
+* [The Console Component] allows you to create command-line commands. Your console commands can be used for any recurring task, such as cronjobs, imports, or other batch jobs.
 
 And of course renaming-files-script itself is open source with a [public repository][renaming-files-script]
  on GitHub.
